@@ -34,11 +34,11 @@ run_sketch_analysis <- function(seurat_obj, output_dir = "./figures", sketch_cel
   seurat_obj <- FindVariableFeatures(seurat_obj)
   seurat_obj <- ScaleData(seurat_obj)
   seurat_obj <- RunPCA(seurat_obj)
-  ggsave((file.path(output_dir, "before_UMAP_plot_celltype_major.png"),
-         plot = DimPlot(seurat_obj, group.by ='celltype_major'), width = 6, height = 4, dpi = 300)
+  ggsave(file.path(output_dir, "before_UMAP_plot_celltype_major.png"),
+         plot = DimPlot(seurat_obj, group.by ="celltype_major"), width = 6, height = 4, dpi = 300)
   
   ggsave(file.path(output_dir, "before_PCA_plot_celltype_major.png"), 
-         plot = DimPlot(seurat_obj, reduction = "pca", group.by = 'celltype_major'), width = 6, height = 4, dpi = 300)
+         plot = DimPlot(seurat_obj, reduction = "pca", group.by = "celltype_major"), width = 6, height = 4, dpi = 300)
 
   ggsave(file.path(output_dir, "before_PCA_plot_Patients.png"), 
          plot = DimPlot(seurat_obj, reduction = "pca"), width = 6, height = 4, dpi = 300)
@@ -53,10 +53,10 @@ run_sketch_analysis <- function(seurat_obj, output_dir = "./figures", sketch_cel
   sk_seurat <- seurat_obj[, colnames(sketched@assays$sketch)]
   sk_seurat <- RunPCA(sk_seurat)
   ggsave(file.path(output_dir,"after_UMAP_celltype_major.png"),
-         plot = DimPlot(sk_seurat, group.by ='celltype_major'), width = 6, height = 4, dpi = 300)
+         plot = DimPlot(sk_seurat, group.by ="celltype_major"), width = 6, height = 4, dpi = 300)
          
   ggsave(file.path(output_dir, "after_PCA_plot_celltype_major.png"), 
-         plot = DimPlot(sk_seurat, reduction = "pca", group.by = 'celltype_major'), width = 6, height = 4, dpi = 300)
+         plot = DimPlot(sk_seurat, reduction = "pca", group.by = "celltype_major"), width = 6, height = 4, dpi = 300)
 
   ggsave(file.path(output_dir, "after_PCA_plot_Patients.png"), 
          plot = DimPlot(sk_seurat, reduction = "pca"), width = 6, height = 4, dpi = 300)
@@ -88,12 +88,12 @@ run_sketch_analysis <- function(seurat_obj, output_dir = "./figures", sketch_cel
   # Cell proportion comparison
   before_cell_props <- seurat_obj@meta.data %>%
     group_by(Patient) %>%
-    summarise(n = n(), .groups = 'drop') %>%
+    summarise(n = n(), .groups = "drop") %>%
     mutate(prop = n / sum(n) * 100)
 
   after_cell_props <- sk_seurat@meta.data %>%
     group_by(Patient) %>%
-    summarise(n = n(), .groups = 'drop') %>%
+    summarise(n = n(), .groups = "drop") %>%
     mutate(prop = n / sum(n) * 100)
 
   comparison_df <- merge(before_cell_props, after_cell_props, by = "Patient", suffixes = c("_before", "_after"))
