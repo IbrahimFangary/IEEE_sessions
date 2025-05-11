@@ -48,9 +48,9 @@ This indicates that **Leverage Score Sampling successfully preserved the global 
 
 ---
 
-###  Cell Proportion Comparison
+###  Cell Proportion Comparison in each patient
 
 ![Cell Proportion Comparison](figures/cell_proportion_comparison.png)
 
-This plot shows the **cell-type proportion** before and after sketching.  
-It indicates that **the proportions were not significantly altered**, suggesting that the sketching process retained representative diversity across cell populations.
+This plot shows the **cell proportion** before and after sketching.  
+It indicates that **the proportions were not significantly altered**, suggesting that the sketching process retained each patient's cell proportion.
