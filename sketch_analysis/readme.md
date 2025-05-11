@@ -36,3 +36,21 @@ install.packages(c("ggplot2", "dplyr"))
 if (!requireNamespace("Seurat", quietly = TRUE)) {
   install.packages("Seurat")
 }
+```
+## 📊 Sketching Evaluation
+
+###  Cumulative Variance Explained
+
+![Cumulative Variance Explained](figures/variance_explained_comparison.png)
+
+The **cumulative variance explained plot** shows that the sketched dataset closely follows the full dataset across principal components.  
+This indicates that **Leverage Score Sampling successfully preserved the global variance structure** of the original dataset, making it suitable for exploratory analyses and method prototyping.
+
+---
+
+###  Cell Proportion Comparison
+
+![Cell Proportion Comparison](figures/cell_proportion_comparison.png)
+
+This plot shows the **cell-type proportion** before and after sketching.  
+It indicates that **the proportions were not significantly altered**, suggesting that the sketching process retained representative diversity across cell populations.
