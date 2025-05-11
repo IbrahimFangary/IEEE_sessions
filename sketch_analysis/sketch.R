@@ -34,7 +34,9 @@ run_sketch_analysis <- function(seurat_obj, output_dir = "./figures", sketch_cel
   seurat_obj <- FindVariableFeatures(seurat_obj)
   seurat_obj <- ScaleData(seurat_obj)
   seurat_obj <- RunPCA(seurat_obj)
-
+  ggsave((file.path(output_dir, "before_UMAP_plot_celltype_major.png"),
+         plot = DimPlot(seurat_obj, group.by ='celltype_major'), width = 6, height = 4, dpi = 300)
+  
   ggsave(file.path(output_dir, "before_PCA_plot_celltype_major.png"), 
          plot = DimPlot(seurat_obj, reduction = "pca", group.by = 'celltype_major'), width = 6, height = 4, dpi = 300)
 
@@ -50,7 +52,9 @@ run_sketch_analysis <- function(seurat_obj, output_dir = "./figures", sketch_cel
 
   sk_seurat <- seurat_obj[, colnames(sketched@assays$sketch)]
   sk_seurat <- RunPCA(sk_seurat)
-
+  ggsave(file.path(output_dir,"after_UMAP_celltype_major.png"),
+         plot = DimPlot(sk_seurat, group.by ='celltype_major'), width = 6, height = 4, dpi = 300)
+         
   ggsave(file.path(output_dir, "after_PCA_plot_celltype_major.png"), 
          plot = DimPlot(sk_seurat, reduction = "pca", group.by = 'celltype_major'), width = 6, height = 4, dpi = 300)
 
